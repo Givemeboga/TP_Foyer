@@ -3,7 +3,9 @@ package org.esprim.tpfoyer.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -11,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class etudiant {
+public class etudiant implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +23,7 @@ public class etudiant {
     private Long cin;
     private String ecole;
     private Date dateNaissance;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<reservation> reservations;
 }
