@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class universite implements Serializable {
+public class Universite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUniversite;
@@ -19,5 +19,5 @@ public class universite implements Serializable {
     private String adresse;
 
     @OneToOne
-    private foyer foyer;
+    private Foyer foyer;
 }

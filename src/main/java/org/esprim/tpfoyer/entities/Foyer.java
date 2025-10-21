@@ -11,7 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class foyer implements Serializable {
+public class Foyer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFoyer;
@@ -19,7 +19,7 @@ public class foyer implements Serializable {
     private String capaciteFoyer;
 
     @OneToOne(mappedBy = "foyer")
-    private universite universite;
+    private Universite universite;
     @OneToMany(mappedBy = "foyer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<bloc> blocs;
+    private Set<Bloc> blocs;
 }

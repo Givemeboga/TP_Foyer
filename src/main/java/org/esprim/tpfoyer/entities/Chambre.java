@@ -11,7 +11,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class chambre implements Serializable {
+public class Chambre implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class chambre implements Serializable {
     private type_chambre typeC;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private bloc bloc;
+    private Bloc bloc;
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<reservation> reservations;
+    private Set<Reservation> reservations;
 }

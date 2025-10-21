@@ -13,13 +13,17 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class reservation implements Serializable {
+public class Etudiant implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idReservation;
-    private Date anneeUniversitaire;
-    private boolean estValide;
+    private Long idEtudiant;
+    private String nomEt;
+    private String prenomEt;
+    private Long cin;
+    private String ecole;
+    private Date dateNaissance;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<etudiant> etudiants;
+    private Set<Reservation> reservations;
 }

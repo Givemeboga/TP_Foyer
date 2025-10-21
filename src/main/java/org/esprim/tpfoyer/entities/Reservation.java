@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -11,16 +12,14 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class bloc implements Serializable {
+
+public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idReservation;
+    private Date anneeUniversitaire;
+    private boolean estValide;
 
-    private Long idBloc;
-    private String nomBloc;
-    private Long capaciteBloc;
-
-    @ManyToOne
-    foyer foyer;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bloc")
-    private Set<chambre> chambres;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Etudiant> etudiants;
 }
