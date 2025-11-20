@@ -2,6 +2,7 @@ package org.esprim.tpfoyer.services;
 
 import org.esprim.tpfoyer.entities.Bloc;
 import org.esprim.tpfoyer.repositories.BlocRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 @Service
 public class BlocServiceImpl implements BlocService {
 
-    private final BlocRepository blocRepository;
+    @Autowired
+    private BlocRepository blocRepository;
 
     // Constructor-based injection
     public BlocServiceImpl(BlocRepository blocRepository) {
