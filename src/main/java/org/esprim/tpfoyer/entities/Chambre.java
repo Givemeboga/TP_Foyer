@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,15 +15,18 @@ public class Chambre implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Renamed from idChambre to id
 
-    private Long idChambre;
-    private Long numeroChambre;
+    private String numeroChambre; // Changed from Long to String
 
     @Enumerated(EnumType.STRING)
     private type_chambre typeC;
 
+    private int capacite; // Added field for room capacity
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Bloc bloc;
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Reservation> reservations;
+
+    @OneToMany(mappedBy = "chambre", cascade = CascadeType.ALL)
+    private List<Reservation> reservations; // Added mappedBy for bidirectional relationship
 }

@@ -44,16 +44,15 @@ public class FoyerServiceImpl implements FoyerService {
         return foyerRepository.findAll();
     }
     @Autowired
-    private UniversiteRepository UniversiteRepository;
+    private UniversiteRepository universiteRepository;
 
     @Override
     public Foyer ajouterFoyerEtAffecterAUniversite(Foyer foyer, long idUniversite) {
-        Universite universite = UniversiteRepository.findById(idUniversite)
+        Universite universite = universiteRepository.findById(idUniversite)
                 .orElseThrow(() -> new RuntimeException("Université introuvable avec l'ID : " + idUniversite));
 
         if (foyer.getBlocs() != null) {
             foyer.getBlocs().forEach(bloc -> bloc.setFoyer(foyer));
-
         }
 
         foyer.setUniversite(universite);

@@ -10,4 +10,6 @@ public interface ReservationService {
     void deleteReservation(Long id);
     Reservation getReservationById(Long id);
     List<Reservation> getAllReservations();
+    Reservation ajouterReservation(long idBloc, long cinEtudiant);
+    public Reservation annulerReservation (long cinEtudiant) ;
 }

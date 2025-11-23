@@ -38,4 +38,9 @@ public class BlocController {
     public List<Bloc> getAllBlocs() {
         return blocService.getAllBlocs();
     }
+
+    @PostMapping("/{idBloc}/affect-chambres")
+    public Bloc affecterChambreABloc(@RequestBody List<Long> numChambre, @PathVariable Long idBloc) {
+        return blocService.affecterChambreABloc(numChambre, idBloc);
+    }
 }

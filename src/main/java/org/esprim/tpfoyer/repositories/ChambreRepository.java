@@ -1,14 +1,26 @@
 package org.esprim.tpfoyer.repositories;
 
+import org.esprim.tpfoyer.entities.Bloc;
 import org.esprim.tpfoyer.entities.Chambre;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ChambreRepository extends JpaRepository<Chambre, Long> {
-    List<Chambre> findAllByNumChambreIn(Collection<Long> numChambres);
+
+    @Query("SELECT c FROM Chambre c WHERE c.numeroChambre IN :numChambre")
+    List<Chambre> findAllByNumChambreIn(@Param("numChambre") List<Long> numChambre);
+
+    @Query("SELECT c FROM Chambre c WHERE c.bloc = :bloc AND " +
+            "(SELECT COUNT(r) FROM Reservation r WHERE r.chambre = c) < " +
+            "CASE c.typeC " +
+            "WHEN org.esprim.tpfoyer.entities.type_chambre.SIMPLE THEN 1 " +
+            "WHEN org.esprim.tpfoyer.entities.type_chambre.DOUBLE THEN 2 " +
+            "WHEN org.esprim.tpfoyer.entities.type_chambre.TRIPLE THEN 3 END " +
+            "ORDER BY c.id ASC")
+    Chambre findFirstByBlocAndReservationsCountLessThanCapacity(@Param("bloc") Bloc bloc);
 }

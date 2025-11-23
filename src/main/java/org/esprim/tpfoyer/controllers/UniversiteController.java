@@ -38,4 +38,14 @@ public class UniversiteController {
     public List<Universite> getAllUniversites() {
         return universiteService.getAllUniversites();
     }
+
+    @PostMapping("/{idFoyer}/affect-to-universite")
+    public Universite affecterFoyerAUniversite(@PathVariable Long idFoyer, @RequestParam String nomUniversite) {
+        return universiteService.affecterFoyerAUniversite(idFoyer, nomUniversite);
+    }
+
+    @DeleteMapping("/{idUniversite}/desaffect-foyer")
+    public Universite desaffecterFoyerDeUniversite(@PathVariable Long idUniversite) {
+        return universiteService.desaffecterFoyerDeUniversite(idUniversite);
+    }
 }

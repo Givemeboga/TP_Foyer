@@ -38,4 +38,9 @@ public class ReservationController {
     public List<Reservation> getAllReservations() {
         return reservationService.getAllReservations();
     }
+
+    @DeleteMapping("/cancel/{cinEtudiant}")
+    public Reservation annulerReservation(@PathVariable long cinEtudiant) {
+        return reservationService.annulerReservation(cinEtudiant);
+    }
 }

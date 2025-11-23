@@ -4,22 +4,24 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReservation;
-    private Date anneeUniversitaire;
-    private boolean estValide;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Etudiant> etudiants;
+    private String anneeUniversitaire; // Changed from Date to String
+    private boolean estValide;
+    private String numReservation;
+
+    @ManyToOne
+    private Etudiant etudiant; // Changed from Set<Etudiant> to a single Etudiant
+
+    @ManyToOne
+    private Chambre chambre;
 }
