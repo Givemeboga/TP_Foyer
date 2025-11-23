@@ -1,32 +1,46 @@
-# TP Foyer Management System
+# 🎉 Système de Gestion du Foyer Universitaire 🎓
 
-This is a Spring Boot application for managing a university foyer system. It includes entities such as `Foyer`, `Bloc`, `Chambre`, `Etudiant`, and `Reservation` to handle various aspects of the system.
+Bienvenue dans l'application de gestion du foyer universitaire ! Cette application Spring Boot est conçue pour simplifier la gestion des foyers, blocs, chambres, étudiants et réservations. 🚀
 
-## Features
+## 🌟 Fonctionnalités
 
-- **Foyer Management**: Manage foyers and their associated blocks.
-- **Bloc Management**: Manage blocks and their associated rooms.
-- **Room Reservations**: Handle reservations for students.
-- **Student Management**: Manage student information and their reservations.
-- **Bidirectional Relationships**: Implemented relationships between entities such as `One-to-Many`, `Many-to-Many`, etc.
+- **🏠 Gestion des Foyers** : Créez, modifiez et supprimez des foyers et gérez leurs blocs associés.
+- **🏢 Gestion des Blocs** : Organisez vos blocs et assignez-leur des chambres.
+   - 📌 **Assigner des chambres** (`Chambre`) à des blocs (`Bloc`).
+   - ❌ **Supprimer l'affectation** des chambres des blocs.
+- **🛏️ Réservations de Chambres** : Permettez aux étudiants de réserver des chambres facilement.
+- **👩‍🎓 Gestion des Étudiants** : Gérez les informations des étudiants et leurs réservations.
+- **🔄 Relations Bidirectionnelles** : Relations entre entités comme `One-to-Many`, `Many-to-Many`, etc.
 
-## Technologies Used
+## 🛠️ Technologies Utilisées
 
-- **Java**: Programming language.
-- **Spring Boot**: Framework for building the application.
-- **Hibernate/JPA**: ORM for database interaction.
-- **Maven**: Dependency management.
-- **Lombok**: To reduce boilerplate code.
-- **H2/MySQL**: Database (can be configured in `application.properties`).
+- **☕ Java** : Langage de programmation principal.
+- **🌱 Spring Boot** : Framework pour construire l'application.
+- **📦 Hibernate/JPA** : ORM pour l'interaction avec la base de données.
+- **🔧 Maven** : Gestion des dépendances.
+- **✨ Lombok** : Réduction du code répétitif.
+- **💾 H2/MySQL** : Base de données (configurable dans `application.properties`).
 
-## Project Structure
+## 🗂️ Structure du Projet
 
-- `src/main/java/org/esprim/tpfoyer/entities`: Contains entity classes such as `Foyer`, `Bloc`, `Chambre`, `Etudiant`, and `Reservation`.
-- `src/main/java/org/esprim/tpfoyer`: Contains the main application class `TpFoyerApplication`.
+- 📁 `src/main/java/org/esprim/tpfoyer/entities` : Classes d'entités comme `Foyer`, `Bloc`, `Chambre`, `Etudiant` et `Reservation`.
+- 📁 `src/main/java/org/esprim/tpfoyer/repositories` : Interfaces des repositories pour les opérations sur la base de données.
+- 📁 `src/main/java/org/esprim/tpfoyer/services` : Classes de services pour la logique métier, comme `BlocServiceImpl`.
+- 📁 `src/main/java/org/esprim/tpfoyer/controllers` : Contrôleurs REST pour gérer les requêtes HTTP.
+- 📁 `src/main/java/org/esprim/tpfoyer` : Classe principale de l'application `TpFoyerApplication`.
 
-## How to Run
+## 🔑 Méthodes Clés
 
-1. **Clone the Repository**:
+### 🏢 Gestion des Blocs
+- **`affecterChambreABloc`** : Assigne une liste de chambres à un bloc.
+- **`desaffecterFoyerDeUniversite`** : Supprime l'association entre un foyer et une université.
+
+### 🛏️ Repository des Chambres
+- **`findAllByNumChambreIn`** : Récupère une liste de chambres par leurs numéros.
+
+## 🚀 Comment Exécuter
+
+1. **Cloner le Dépôt** :
    ```bash
    git clone https://github.com/Givemeboga/TP_Foyer.git
    cd TP_Foyer

@@ -1,10 +1,13 @@
 package org.esprim.tpfoyer.services;
 
 import org.esprim.tpfoyer.entities.Bloc;
+import org.esprim.tpfoyer.entities.Chambre;
 import org.esprim.tpfoyer.repositories.BlocRepository;
+import org.esprim.tpfoyer.repositories.ChambreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -12,6 +15,8 @@ public class BlocServiceImpl implements BlocService {
 
     @Autowired
     private BlocRepository blocRepository;
+    @Autowired
+    private ChambreRepository chambreRepository;
 
     // Constructor-based injection
     public BlocServiceImpl(BlocRepository blocRepository) {
@@ -44,5 +49,23 @@ public class BlocServiceImpl implements BlocService {
     @Override
     public List<Bloc> getAllBlocs() {
         return blocRepository.findAll();
+    }
+
+    @Override
+    public Bloc affecterChambreABloc(List<Long> numChambre, Long idBloc) {
+        Chambre chambre = chambreRepository.findAllByNumChambreIn(numChambre)
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Chambre introuvable avec le numéro : " + numChambre.get(0)));
+        Bloc bloc = blocRepository.findById(idBloc)
+                .orElseThrow(() -> new RuntimeException("Bloc introuvable avec l'ID : " + idBloc));
+        if (chambre.getBloc() != null) {
+            throw new RuntimeException("La chambre est déjà affectée à un bloc.");
+        }
+        bloc.getChambres().add(chambre);
+        chambre.setBloc(bloc);
+        blocRepository.save(bloc);
+        chambreRepository.save(chambre);
+        return bloc;
     }
 }
