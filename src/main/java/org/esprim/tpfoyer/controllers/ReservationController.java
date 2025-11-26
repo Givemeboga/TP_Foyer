@@ -39,8 +39,20 @@ public class ReservationController {
         return reservationService.getAllReservations();
     }
 
+    @PostMapping("/{idBloc}/add/{cinEtudiant}")
+    public Reservation ajouterReservation(@PathVariable long idBloc, @PathVariable long cinEtudiant) {
+        return reservationService.ajouterReservation(idBloc, cinEtudiant);
+    }
+
     @DeleteMapping("/cancel/{cinEtudiant}")
     public Reservation annulerReservation(@PathVariable long cinEtudiant) {
         return reservationService.annulerReservation(cinEtudiant);
+    }
+
+    @GetMapping("/search")
+    public List<Reservation> getReservationParAnneeUniversitaireEtNomUniversite(
+            @RequestParam String anneeUniversite,
+            @RequestParam String nomUniversite) {
+        return reservationService.getReservationParAnneeUniversitaireEtNomUniversite(anneeUniversite, nomUniversite);
     }
 }

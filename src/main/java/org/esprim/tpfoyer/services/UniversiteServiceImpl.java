@@ -1,5 +1,6 @@
 package org.esprim.tpfoyer.services;
 
+import org.esprim.tpfoyer.entities.Chambre;
 import org.esprim.tpfoyer.entities.Foyer;
 import org.esprim.tpfoyer.entities.Universite;
 import org.esprim.tpfoyer.repositories.FoyerRepository;
@@ -7,6 +8,7 @@ import org.esprim.tpfoyer.repositories.UniversiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -74,5 +76,19 @@ public class UniversiteServiceImpl implements UniversiteService {
         universiteRepository.save(universite);
         foyerRepository.save(foyer);
         return universite;
+    }
+
+    @Override
+    public List<Chambre> getChambresParNomUniversite(String nomUniversite) {
+        Universite universite = universiteRepository.findByNomUniversite(nomUniversite)
+                .orElseThrow(() -> new RuntimeException("Université introuvable avec le nom : " + nomUniversite));
+
+        List<Chambre> chambres = new ArrayList<>();
+        if (universite.getFoyer() != null) {
+            Foyer foyer = universite.getFoyer();
+            chambres.addAll(foyer.getChambres());
+        }
+
+        return chambres;
     }
 }

@@ -2,8 +2,8 @@ package org.esprim.tpfoyer.controllers;
 
 import lombok.AllArgsConstructor;
 import org.esprim.tpfoyer.entities.Chambre;
+import org.esprim.tpfoyer.entities.type_chambre;
 import org.esprim.tpfoyer.services.ChambreService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping("/api/chambres")
 @AllArgsConstructor
 public class ChambreController {
-
 
     private ChambreService chambreService;
 
@@ -39,5 +38,19 @@ public class ChambreController {
     @GetMapping
     public List<Chambre> getAllChambres() {
         return chambreService.getAllChambres();
+    }
+
+    @GetMapping("/bloc/{idBloc}/type")
+    public List<Chambre> getChambresParBlocEtType(
+            @PathVariable long idBloc,
+            @RequestParam type_chambre typeC) {
+        return chambreService.getChambresParBlocEtType(idBloc, typeC);
+    }
+
+    @GetMapping("/non-reserve")
+    public List<Chambre> getChambresNonReserveParNomUniversiteEtTypeChambre(
+            @RequestParam String nomUniversite,
+            @RequestParam type_chambre type) {
+        return chambreService.getChambresNonReserveParNomUniversiteEtTypeChambre(nomUniversite, type);
     }
 }

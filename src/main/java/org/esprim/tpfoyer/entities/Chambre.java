@@ -15,18 +15,18 @@ public class Chambre implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Renamed from idChambre to id
+    private Long id;
 
-    private String numeroChambre; // Changed from Long to String
+    private String numeroChambre;
 
     @Enumerated(EnumType.STRING)
     private type_chambre typeC;
 
-    private int capacite; // Added field for room capacity
+    private int capacite;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Bloc bloc;
 
     @OneToMany(mappedBy = "chambre", cascade = CascadeType.ALL)
-    private List<Reservation> reservations; // Added mappedBy for bidirectional relationship
+    private List<Reservation> reservations;
 }

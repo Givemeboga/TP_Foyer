@@ -1,5 +1,6 @@
 package org.esprim.tpfoyer.services;
 
+import org.esprim.tpfoyer.entities.Chambre;
 import org.esprim.tpfoyer.entities.Universite;
 
 import java.util.List;
@@ -11,5 +12,6 @@ public interface UniversiteService {
     Universite getUniversiteById(Long id);
     List<Universite> getAllUniversites();
     Universite affecterFoyerAUniversite(Long idFoyer, String nomUniversite);
-    Universite  desaffecterFoyerDeUniversite(Long idUniversite);
+    Universite desaffecterFoyerDeUniversite(Long idUniversite);
+    List<Chambre> getChambresParNomUniversite(String nomUniversite); // New method
 }

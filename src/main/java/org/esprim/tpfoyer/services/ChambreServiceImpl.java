@@ -1,10 +1,12 @@
 package org.esprim.tpfoyer.services;
 
 import org.esprim.tpfoyer.entities.Chambre;
+import org.esprim.tpfoyer.entities.type_chambre;
 import org.esprim.tpfoyer.repositories.ChambreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Year;
 import java.util.List;
 
 @Service
@@ -41,4 +43,18 @@ public class ChambreServiceImpl implements ChambreService {
     public List<Chambre> getAllChambres() {
         return chambreRepository.findAll();
     }
+
+    @Override
+    public List<Chambre> getChambresParBlocEtType(long idBloc, type_chambre typeC) {
+
+        return chambreRepository.findChambresByBlocAndTypeJPQL(idBloc, typeC);
+    }
+
+    @Override
+    public List<Chambre> getChambresNonReserveParNomUniversiteEtTypeChambre(String nomUniversite, type_chambre type) {
+        String anneeUniversitaire = String.valueOf(Year.now().getValue());
+        return chambreRepository.findNonReservedRoomsByUniversityAndType(nomUniversite, type, anneeUniversitaire);
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package org.esprim.tpfoyer.controllers;
 
+import org.esprim.tpfoyer.entities.Chambre;
 import org.esprim.tpfoyer.entities.Universite;
 import org.esprim.tpfoyer.services.UniversiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,10 @@ public class UniversiteController {
     @DeleteMapping("/{idUniversite}/desaffect-foyer")
     public Universite desaffecterFoyerDeUniversite(@PathVariable Long idUniversite) {
         return universiteService.desaffecterFoyerDeUniversite(idUniversite);
+    }
+
+    @GetMapping("/{nomUniversite}/chambres")
+    public List<Chambre> getChambresParNomUniversite(@PathVariable String nomUniversite) {
+        return universiteService.getChambresParNomUniversite(nomUniversite);
     }
 }

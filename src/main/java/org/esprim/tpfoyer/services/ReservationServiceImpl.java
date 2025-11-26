@@ -97,4 +97,9 @@ public class ReservationServiceImpl implements ReservationService {
 
         return reservationRepository.save(reservation);
     }
+
+    @Override
+    public List<Reservation> getReservationParAnneeUniversitaireEtNomUniversite(String anneeUniversite, String nomUniversite) {
+        return reservationRepository.findReservationsByAnneeUniversitaireAndNomUniversite(anneeUniversite, nomUniversite);
+    }
 }
