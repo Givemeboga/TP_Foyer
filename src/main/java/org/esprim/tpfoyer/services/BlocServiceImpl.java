@@ -69,9 +69,9 @@ public class BlocServiceImpl implements BlocService {
             if (chambre.getBloc() != null && chambre.getBloc().getIdBloc() != null) {
                 throw new RuntimeException("La chambre " + chambre.getNumeroChambre() + " est déjà affectée à un bloc.");
             }
-            chambre.setBloc(bloc);
-            bloc.getChambres().add(chambre);
         }
+        chambres.forEach(chambre -> chambre.setBloc(bloc));
+        bloc.getChambres().addAll(chambres);
 
         blocRepository.save(bloc);
         return bloc;
