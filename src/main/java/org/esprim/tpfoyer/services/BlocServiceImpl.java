@@ -73,7 +73,7 @@ public class BlocServiceImpl implements BlocService {
         chambres.forEach(chambre -> chambre.setBloc(bloc));
         bloc.getChambres().addAll(chambres);
 
-        blocRepository.save(bloc);
+        chambreRepository.saveAll(chambres);
         return bloc;
     }
 }
