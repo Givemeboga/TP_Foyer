@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/chambres")
+@RequestMapping("/chambre")
 @AllArgsConstructor
 public class ChambreController {
 
     private ChambreService chambreService;
 
-    @PostMapping
+    @PostMapping("/add-chambre")
     public Chambre createChambre(@RequestBody Chambre c) {
         return chambreService.createChambre(c);
     }

@@ -1,5 +1,6 @@
 package org.esprim.tpfoyer.services;
 
+import lombok.AllArgsConstructor;
 import org.esprim.tpfoyer.entities.Bloc;
 import org.esprim.tpfoyer.entities.Chambre;
 import org.esprim.tpfoyer.entities.Etudiant;
@@ -8,21 +9,17 @@ import org.esprim.tpfoyer.repositories.BlocRepository;
 import org.esprim.tpfoyer.repositories.ChambreRepository;
 import org.esprim.tpfoyer.repositories.EtudiantRepository;
 import org.esprim.tpfoyer.repositories.ReservationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ReservationServiceImpl implements ReservationService {
 
-    @Autowired
     private ReservationRepository reservationRepository;
-    @Autowired
     private BlocRepository blocRepository;
-    @Autowired
     private EtudiantRepository etudiantRepository;
-    @Autowired
     private ChambreRepository chambreRepository;
 
     @Override
@@ -31,7 +28,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Reservation updateReservation(Long id, Reservation r) {
+    public Reservation updateReservation(String id, Reservation r) {
         Reservation existingReservation = reservationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Réservation introuvable"));
         existingReservation.setAnneeUniversitaire(r.getAnneeUniversitaire());
@@ -41,12 +38,12 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void deleteReservation(Long id) {
+    public void deleteReservation(String id) {
         reservationRepository.deleteById(id);
     }
 
     @Override
-    public Reservation getReservationById(Long id) {
+    public Reservation getReservationById(String id) {
         return reservationRepository.findById(id).orElseThrow(() -> new RuntimeException("Réservation introuvable"));
     }
 

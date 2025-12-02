@@ -25,6 +25,4 @@ public class Foyer implements Serializable {
     @OneToMany(mappedBy = "foyer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Bloc> blocs;
 
-    @OneToMany(mappedBy = "foyer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Chambre> chambres; // Add this field
 }

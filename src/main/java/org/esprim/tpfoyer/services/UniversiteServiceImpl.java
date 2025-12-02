@@ -80,15 +80,7 @@ public class UniversiteServiceImpl implements UniversiteService {
 
     @Override
     public List<Chambre> getChambresParNomUniversite(String nomUniversite) {
-        Universite universite = universiteRepository.findByNomUniversite(nomUniversite)
-                .orElseThrow(() -> new RuntimeException("Université introuvable avec le nom : " + nomUniversite));
 
-        List<Chambre> chambres = new ArrayList<>();
-        if (universite.getFoyer() != null) {
-            Foyer foyer = universite.getFoyer();
-            chambres.addAll(foyer.getChambres());
-        }
-
-        return chambres;
+        return null;
     }
 }

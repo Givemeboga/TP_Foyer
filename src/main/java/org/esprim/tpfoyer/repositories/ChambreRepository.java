@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ChambreRepository extends JpaRepository<Chambre, Long> {
+public interface ChambreRepository extends JpaRepository<Chambre,Long> {
 
     @Query("SELECT c FROM Chambre c WHERE c.numeroChambre IN :numChambre")
     List<Chambre> findAllByNumChambreIn(@Param("numChambre") List<Long> numChambre);

@@ -11,7 +11,7 @@ public interface ChambreService {
     void deleteChambre(Long id);
     Chambre getChambreById(Long id);
     List<Chambre> getAllChambres();
-    List<Chambre> getChambresParBlocEtType(long idBloc, type_chambre typeC);
+    List<Chambre> getChambresParBlocEtType(Long idBloc, type_chambre typeC);
     List<Chambre> getChambresNonReserveParNomUniversiteEtTypeChambre(String nomUniversite, type_chambre type);
 
 }

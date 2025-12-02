@@ -20,17 +20,17 @@ public class ReservationController {
     }
 
     @PutMapping("/{id}")
-    public Reservation updateReservation(@PathVariable Long id, @RequestBody Reservation r) {
+    public Reservation updateReservation(@PathVariable String id, @RequestBody Reservation r) {
         return reservationService.updateReservation(id, r);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteReservation(@PathVariable Long id) {
+    public void deleteReservation(@PathVariable String id) {
         reservationService.deleteReservation(id);
     }
 
     @GetMapping("/{id}")
-    public Reservation getReservationById(@PathVariable Long id) {
+    public Reservation getReservationById(@PathVariable String id) {
         return reservationService.getReservationById(id);
     }
 

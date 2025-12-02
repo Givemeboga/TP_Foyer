@@ -12,8 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Reservation implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idReservation;
+    private String idReservation;
 
     private String anneeUniversitaire; // Changed from Date to String
     private boolean estValide;

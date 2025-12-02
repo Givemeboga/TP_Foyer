@@ -45,7 +45,7 @@ public class ChambreServiceImpl implements ChambreService {
     }
 
     @Override
-    public List<Chambre> getChambresParBlocEtType(long idBloc, type_chambre typeC) {
+    public List<Chambre> getChambresParBlocEtType(Long idBloc, type_chambre typeC) {
 
         return chambreRepository.findChambresByBlocAndTypeJPQL(idBloc, typeC);
     }
